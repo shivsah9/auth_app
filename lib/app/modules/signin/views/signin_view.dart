@@ -9,16 +9,89 @@ class SigninView extends GetView<SigninController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SigninView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SigninView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
+        appBar: AppBar(),
+        body: Padding(
+          padding: EdgeInsets.all(24),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                child: Image.asset(
+                  "assets/logo/logo.png",
+                  height: 107,
+                  width: 107,
+                ),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                'Log in',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Email',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                  )),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'example@gmail.com',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ),
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Password',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                  )),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  suffixIcon: Icon(Icons.visibility),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4)),
+                ),
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: true,
+                    onChanged: (value) {},
+                  ),
+                  SizedBox(width: 6,),
+                  Text('Remember me'),
+                  SizedBox(
+                    width: 47,),
+                  Text('Forgot Password?' ,style: TextStyle(color: Colors.red),),
+                ],
+              ),
+              Container(
+                width: double.maxFinite,
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // go to signin page
+                    // Get.toNamed(Routes.SIGNIN);
+                  },
+                  child: Text("Log in"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
