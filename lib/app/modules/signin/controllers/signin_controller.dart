@@ -1,14 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SigninController extends GetxController {
-  //TODO: Implement SigninController
+import '../../../routes/app_pages.dart';
 
+class SigninController extends GetxController {
   final count = 0.obs;
 
   var isChecked = true.obs;
 
   var isPasswordVisible = false.obs;
 
+  var userNameController = TextEditingController();
+
+  var passwordController = TextEditingController();
 
   @override
   void onInit() {
@@ -23,6 +27,10 @@ class SigninController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void gotoForget() {
+    Get.toNamed(Routes.FORGOT_PASSWORD);
   }
 
   void increment() => count.value++;
