@@ -51,25 +51,47 @@ class SigninView extends GetView<SigninController> {
                     'Password',
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
                   )),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  suffixIcon: Icon(Icons.visibility),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4)),
+              Obx(
+                () => TextFormField(
+                  obscureText: controller.isPasswordVisible.value,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    suffixIcon: InkWell(
+                        onTap: () {
+                          controller.isPasswordVisible.value =
+                              !controller.isPasswordVisible.value;
+                        },
+                        child: Icon(controller.isPasswordVisible.value
+                            ? Icons.visibility_off
+                            : Icons.visibility)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
                 ),
               ),
               Row(
                 children: [
-                  Checkbox(
-                    value: true,
-                    onChanged: (value) {},
+                  Obx(
+                    () => Checkbox(
+                      value: controller.isChecked.value,
+                      onChanged: (value) {
+                        controller.isChecked.value = value ?? false;
+
+                        print(controller.isChecked);
+                      },
+                    ),
                   ),
-                  SizedBox(width: 6,),
+                  SizedBox(
+                    width: 6,
+                  ),
                   Text('Remember me'),
                   SizedBox(
-                    width: 47,),
-                  Text('Forgot Password?' ,style: TextStyle(color: Colors.red),),
+                    width: 47,
+                  ),
+                  Text(
+                    'Forgot Password?',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 ],
               ),
               Container(
